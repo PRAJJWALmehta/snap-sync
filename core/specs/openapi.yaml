@@ -1,0 +1,48 @@
+openapi: 3.0.3
+info:
+  title: Snap Sync API
+  description: API for the Snap Sync Google Photos Clone
+  version: 1.0.0
+paths:
+  /albums:
+    post:
+      summary: Create a new album
+      operationId: createAlbum
+      tags:
+        - Album
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAlbumDto'
+      responses:
+        '201':
+          description: Album created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlbumResponseDto'
+
+components:
+  schemas:
+    CreateAlbumDto:
+      type: object
+      required:
+        - albumName
+      properties:
+        albumName:
+          type: string
+          example: "Summer Vacation 2026"
+    
+    AlbumResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        albumName:
+          type: string
+        createdAt:
+          type: string
+          format: date-time

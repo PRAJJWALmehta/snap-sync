@@ -1,0 +1,72 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "AppController_getHello",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "App"
+        ]
+      }
+    },
+    "/albums": {
+      "post": {
+        "operationId": "AlbumController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAlbumDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "summary": "Create a new album",
+        "tags": [
+          "Album"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Snap Sync API",
+    "description": "",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "CreateAlbumDto": {
+        "type": "object",
+        "properties": {
+          "albumName": {
+            "type": "string",
+            "example": "Summer Vacation 2026"
+          },
+          "description": {
+            "type": "string",
+            "example": "Photos from our trip to Italy"
+          }
+        },
+        "required": [
+          "albumName"
+        ]
+      }
+    }
+  }
+}

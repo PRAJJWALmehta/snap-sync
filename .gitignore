@@ -2,3 +2,10 @@ node_modules/
 dist/
 .env
 .DS_Store
+
+# Shared SDK (Generated)
+core/sdk/
+
+# If the generator creates temporary logs or backup files
+.openapi-generator/
+openapitools.json

@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.31.0"
+  },
+  "scripts": {
+    "generate:sdk": "openapi-generator-cli generate -i core/specs/openapi.json -g typescript-fetch -o core/sdk --additional-properties=typescriptThreePlus=true,modelPropertyNaming=original"
+  }
+}

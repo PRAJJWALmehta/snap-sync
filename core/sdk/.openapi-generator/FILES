@@ -1,0 +1,12 @@
+apis/AlbumApi.ts
+apis/AppApi.ts
+apis/index.ts
+docs/AlbumApi.md
+docs/AlbumResponseDto.md
+docs/AppApi.md
+docs/CreateAlbumDto.md
+index.ts
+models/AlbumResponseDto.ts
+models/CreateAlbumDto.ts
+models/index.ts
+runtime.ts

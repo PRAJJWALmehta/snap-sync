@@ -9,3 +9,32 @@ core/sdk/
 # If the generator creates temporary logs or backup files
 .openapi-generator/
 openapitools.json
+
+# IDE and tool configuration folders
+.agent/
+.amazonq/
+.augment/
+.claude/
+.cline/
+.clinerules/
+.codebuddy/
+.codex/
+.continue/
+.cospec/
+.crush/
+.cursor/
+.factory/
+.gemini/
+.github/prompts/
+.github/skills/
+.iflow/
+.kilocode/
+.kiro/
+.opencode/
+.pi/
+.qoder/
+.qwen/
+.roo/
+.trae/
+.vscode/
+.windsurf/

@@ -1,0 +1,73 @@
+schema: spec-driven
+
+context: |
+  # Snap Sync
+
+  ## Vision and scope
+
+  **Personal project:** the long-term aim is a **Google Photos–style** experience—central library, albums, upload from devices, search/discovery, and reliable backup/sync—**self-hosted** and under your control instead of a SaaS lock-in.
+
+  **Snap Sync** is this effort’s **application layer**: spec-driven APIs, a SvelteKit web UI, and generated clients, built around **[Immich](https://immich.app/)** as the media engine (storage, ML, mobile apps, ingestion). This repo is **not** a fork of Immich; it integrates with and orchestrates around it.
+
+  Hosting Immich (Docker Compose, PostgreSQL, Redis, ML workers, volumes) is the **production-grade substrate**: orchestration, persistence tuning, reverse proxy + TLS, observability (e.g. Prometheus/Grafana), and disaster recovery (DB dumps, off-site sync) are deliberate engineering goals—not only “install scripts.”
+
+  ## Concepts in play
+
+  - **SDD (Spec-Driven Development):** OpenAPI is the contract; `core/specs/openapi.json` feeds a **generated TypeScript SDK** (`npm run generate:sdk`).
+  - **NestJS:** API server—modules, controllers, services; **DTOs** define and validate request/response shapes at the boundary.
+  - **SvelteKit:** Web UI (Svelte 5 **runes** where applicable).
+  - **Monorepo:** `server/`, `web/`, `core/` (spec + SDK) in one tree.
+  - **MCP server:** Planned as part of the tooling/agent integration story (details TBD).
+
+  ## Repository layout
+
+  | Path | Role |
+  |------|------|
+  | `server/` | NestJS app, Swagger at `/api`, listens on **3000** |
+  | `web/` | SvelteKit (Vite), dev server typical port **5173** |
+  | `core/specs/openapi.json` | OpenAPI 3 export (written on server bootstrap) |
+  | `core/sdk/` | Generated `typescript-fetch` client (`npm run generate:sdk` from repo root) |
+
+  ## API ↔ SDK ↔ web (today)
+
+  - Server builds Swagger and **writes** `core/specs/openapi.json` on startup (`server/src/main.ts`).
+  - Web calls the API through the generated SDK (`operationId`s such as `getAllAlbums`, `createAlbum`); local dev assumes API at `http://127.0.0.1:3000`.
+  - CORS allows `http://localhost:5173`.
+
+  ## Current behavior vs. target
+
+  **Today:** Album APIs are **in-memory** prototypes—useful for SDD and UI wiring, not durable storage or Immich integration yet.
+
+  **Target:** Product flows that feel closer to **Google Photos** (browsing, collections, sync semantics) powered by Immich under the hood—plus a real Immich deployment (API, upload location, credentials), background workers, and the resilience/observability items below.
+
+  ## Roadmap — core application (Immich & access)
+
+  - [ ] Provision environment: dedicated VM or Docker on Mac (or equivalent).
+  - [ ] Storage architecture: external SSD for bulk assets (`UPLOAD_LOCATION`); PostgreSQL on fast internal disk for I/O.
+  - [ ] Reverse proxy: Nginx or Caddy with TLS (Let’s Encrypt, Cloudflare, or Tailscale) for secure remote access.
+  - [ ] Mobile/CLI: exercise ingestion via Immich mobile + CLI.
+
+  ## Roadmap — containerization and orchestration
+
+  - [ ] Docker Compose: isolate API, microservices (ML), Redis, Postgres (patterns aligned with Immich’s stack).
+  - [ ] Resource limits on services to mimic constrained cloud nodes.
+  - [ ] Health checks: Postgres/Redis ready before dependent services start.
+
+  ## Roadmap — cloud-native
+
+  - [ ] S3-compatible storage (MinIO or AWS S3) as or alongside local disk.
+  - [ ] Observability: Prometheus metrics + Grafana (e.g. ML/face jobs, Redis queue depth, CPU/RAM).
+  - [ ] IaC: Terraform (or similar) for buckets and IAM where applicable.
+
+  ## Feature backlog
+
+  - [ ] **Auto-sync:** background workers; conflict resolution.
+  - [ ] **Indexing:** metadata extraction; search indexing.
+  - [ ] **Resilience:** automated DB dumps; off-site sync (3-2-1 style).
+  - [ ] **Idempotency** for sync and upload operations.
+
+  ## Conventions for changes
+
+  - Prefer **minimal, focused** diffs; match existing Nest/Svelte patterns.
+  - After API changes, refresh `openapi.json` (e.g. run server) then **`npm run generate:sdk`** before relying on new types in `web/`.
+  - Keep DTOs and Swagger decorators aligned with the exported spec.

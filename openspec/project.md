@@ -6,9 +6,9 @@ Engineering Goal: Transition from a "User" to an "Infrastructure Engineer" by tr
 2. Technical Stack (The "Source of Truth")
 Architecture: Distributed Microservices via Docker Compose.
 
-Backend Framework: NestJS (TypeScript) for custom logic/integrations.
+Backend Framework: NestJS (TypeScript) for optional custom logic/integrations only when native Immich behavior is insufficient.
 
-Frontend: SvelteKit (utilizing Runes for reactive state management).
+Frontend: SvelteKit (utilizing Runes for reactive state management) for thin dashboards/controls, not a full replacement for Immich clients.
 
 Primary Data Store: PostgreSQL (Optimized with Split-I/O: Metadata on Internal SSD, Assets on External SSD).
 
@@ -18,6 +18,8 @@ Communication: MCP (Model Context Protocol) Server for AI-agent system interacti
 
 Spec Methodology: Spec Driven Development (SDD) using DTOs as the primary contract between UI, Client, and Server.
 
+Operational Default: Use native Immich capabilities first (ingestion, mobile sync, asset lifecycle, and media management). Build custom app endpoints/workflows only for explicit gaps.
+
 3. System Constraints & Invariants
 Performance: DB Metadata must reside on Internal Mac SSD to minimize I/O wait times during bulk ingestion.
 
@@ -26,6 +28,8 @@ Security: All remote traffic must be TLS-encrypted via Reverse Proxy (Caddy/Ngin
 Resilience: 3-2-1 Backup Strategy. Automated off-site synchronization to S3-compatible storage (MinIO/AWS).
 
 Scalability: Mono-repo structure to support modular growth of the MCP server and SvelteKit dashboard.
+
+Implementation Principle: Use native Immich behavior by default.
 
 4. Feature Roadmap & Milestones (1-3 hour sittings)
 

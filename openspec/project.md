@@ -36,8 +36,10 @@ Implementation Principle: Use native Immich behavior by default.
 Execution Rule: Each task is scoped for one focused session. Do not start a new task until the current task has a verifiable output (file, dashboard, script, or passing check).
 
 Phase 1: Core Infrastructure (Foundation)
-- [ ] T1 (1h): Baseline host audit.
+- [x] T1 (1h): Baseline host audit.
   Output: `docs/runbook/host-baseline.md` with macOS version, disk map, free space, Docker version, and current bottlenecks.
+- [ ] T1a (1h): Install and setup Docker.
+  Output: Docker installed, resource limits (CPU/RAM) configured for Immich, and verified healthy via `docker info`.
 - [ ] T2 (2h): Create Immich Compose profile in repo.
   Output: `infra/immich/docker-compose.yml` and `.env.example` with documented required variables.
 - [ ] T3 (1h): Validate service boot order.

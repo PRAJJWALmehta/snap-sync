@@ -1,10 +1,10 @@
 Project Constitution: Immich Distributed Media Stack
 1. Vision & Strategy
 Core Objective: Architect and maintain a high-availability, self-hosted personal media cloud (Immich) to manage cross-device photo synchronization and backup.
-Engineering Goal: Transition from a "User" to an "Infrastructure Engineer" by treating this home deployment as a production-grade distributed system. This project serves as a live case study for Observability (Grafana), Resource Orchestration (Docker), and Data Consistency (PostgreSQL/Redis).
+Engineering Goal: Transition from a "User" to an "Infrastructure Engineer" by treating this home deployment as a production-grade distributed system. This project serves as a live case study for Observability (Grafana), Resource Orchestration (OrbStack/Docker), and Data Consistency (PostgreSQL/Redis).
 
 2. Technical Stack (The "Source of Truth")
-Architecture: Distributed Microservices via Docker Compose.
+Architecture: Distributed Microservices via Docker Compose on OrbStack.
 
 Backend Framework: NestJS (TypeScript) for optional custom logic/integrations only when native Immich behavior is insufficient.
 
@@ -37,9 +37,9 @@ Execution Rule: Each task is scoped for one focused session. Do not start a new 
 
 Phase 1: Core Infrastructure (Foundation)
 - [x] T1 (1h): Baseline host audit.
-  Output: `docs/runbook/host-baseline.md` with macOS version, disk map, free space, Docker version, and current bottlenecks.
-- [ ] T1a (1h): Install and setup Docker.
-  Output: Docker installed, resource limits (CPU/RAM) configured for Immich, and verified healthy via `docker info`.
+  Output: `docs/runbook/host-baseline.md` with macOS version, disk map, free space, OrbStack/Docker version, and current bottlenecks.
+- [x] T1a (1h): Install and setup a lightweight container runtime (OrbStack).
+  Output: OrbStack installed, strict resource limits (CPU/RAM/Disk) configured to protect the Mac, and verified healthy via `docker info`.
 - [ ] T2 (2h): Create Immich Compose profile in repo.
   Output: `infra/immich/docker-compose.yml` and `.env.example` with documented required variables.
 - [ ] T3 (1h): Validate service boot order.

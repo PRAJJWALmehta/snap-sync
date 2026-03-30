@@ -1,6 +1,4 @@
-# Capability: host-audit
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Host Baseline Documentation
 The documentation SHALL contain a runbook document at `docs/runbook/host-baseline.md` that records the initial state of the host machine.

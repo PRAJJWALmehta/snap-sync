@@ -120,3 +120,7 @@ If such configuration files are introduced in the future, agents must prioritize
     - Per Phase: Full regression drill.
 - **Project True Status:** Edit and update `project.md` in-case there is any deviation from the specified tasks. It is to be used as the single source of truth and also as the project status.
 - **Task-Prefixed Changes:** Always prefix the folder created during `/opsx-propose` with the task number (e.g., `t1-baseline-host-audit`).
+
+## 5. Agent Execution Rules
+
+- **Explicit Confirmation:** Do not start applying tasks or running modifying system/state commands associated with tasks until the user explicitly asks and confirms they are ready to proceed. Let the user control the pacing of task execution.

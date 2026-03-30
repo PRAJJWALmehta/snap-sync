@@ -20,7 +20,7 @@ context: |
   ## Constraints and invariants
   - Performance: DB metadata path remains on internal SSD for ingestion performance.
   - Security: remote access is TLS-terminated via reverse proxy (Caddy or Nginx).
-  - Resilience: 3-2-1 backup policy with automated off-site sync to S3-compatible target.
+  - Resilience: 2-copy policy with automated sync to local secondary storage (no off-site copy for now).
   - Delivery principle: default to Immich-native actions for ingest/sync/cleanup; custom code is exception-path only.
 
   ## Practical roadmap shape

@@ -25,7 +25,7 @@ Performance: DB Metadata must reside on Internal Mac SSD to minimize I/O wait ti
 
 Security: All remote traffic must be TLS-encrypted via Reverse Proxy (Caddy/Nginx).
 
-Resilience: 3-2-1 Backup Strategy. Automated off-site synchronization to S3-compatible storage (MinIO/AWS).
+Resilience: 2-copy policy. Maintain a primary library plus an automated local secondary backup (no off-site copy for now).
 
 Scalability: Mono-repo structure to support modular growth of the MCP server and SvelteKit dashboard.
 
@@ -62,8 +62,8 @@ Phase 2: Reliability and Orchestration (Core Production Behaviors)
   Output: per-service limits in compose + notes on no-crash startup under limits.
 - [ ] T12 (2h): Stress ingest test under limits.
   Output: ingest of 100+ photos with timing and failures captured in `docs/tests/load-ingest-001.md`.
-- [ ] T13 (2h): Configure S3-compatible target (MinIO first).
-  Output: working bucket + credentials path + successful object write/read test.
+- [ ] T13 (2h): Configure local secondary backup target.
+  Output: verified backup path and successful write/read restore test.
 - [ ] T14 (2h): Wire off-site sync job prototype.
   Output: script in `scripts/backup/sync-assets.sh` with dry-run and real-run modes.
 - [ ] T15 (1h): Idempotency pass for sync script.

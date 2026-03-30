@@ -5,6 +5,8 @@ description: Strict Spec-Driven Development (SDD) Protocol
 - **One Task Per Sitting:** Never attempt multiple roadmap tasks at once. Focus on a 1-3 hour slice.
 - **Vertical Tasks Only:** Prefer tasks with clear outputs (files, scripts, or tests).
 - **Small Commits:** Keep commits atomic to the specific OpenSpec change.
+- **Project True Status:** Edit and update `openspec/project.md` in-case there is any deviation from the specified tasks. It is to be used as the single source of truth and also as the project status.
+- **Task-Prefixed Changes:** Always prefix the folder created during `/opsx-propose` with the task number (e.g., `t1-baseline-host-audit`).
 
 # Definition of Done (DoD)
 Every task must include these 3 bullets in its `tasks.md`:

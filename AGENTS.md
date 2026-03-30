@@ -110,3 +110,17 @@ These guidelines are derived from project configurations (like `tsconfig.json`, 
 No specific `.cursor/rules/`, `.cursorrules`, or `.github/copilot-instructions.md` files were found in this repository. Therefore, agents should adhere to the general guidelines provided above and focus on generating idiomatic and well-structured code.
 
 If such configuration files are introduced in the future, agents must prioritize and strictly follow those rules.
+
+## 4. Project Strategy: Immich Managed Stack
+
+- **Immich-First Check:** Before coding, ALWAYS ask: "Can Immich already do this natively via config?"
+- **Branching Discipline:** One branch per OpenSpec change. Merge ONLY after manual review and a successful `/opsx:verify`.
+- **Testing Cadence:**
+    - Per Task: Targeted smoke test.
+    - Per Phase: Full regression drill.
+- **Project True Status:** Edit and update `project.md` in-case there is any deviation from the specified tasks. It is to be used as the single source of truth and also as the project status.
+- **Task-Prefixed Changes:** Always prefix the folder created during `/opsx-propose` with the task number (e.g., `t1-baseline-host-audit`).
+
+## 5. Agent Execution Rules
+
+- **Explicit Confirmation:** Do not start applying tasks or running modifying system/state commands associated with tasks until the user explicitly asks and confirms they are ready to proceed. Let the user control the pacing of task execution.

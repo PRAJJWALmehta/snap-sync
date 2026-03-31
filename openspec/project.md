@@ -40,7 +40,7 @@ Phase 1: Core Infrastructure (Foundation)
   Output: `docs/runbook/host-baseline.md` with macOS version, disk map, free space, OrbStack/Docker version, and current bottlenecks.
 - [x] T1a (1h): Install and setup a lightweight container runtime (OrbStack).
   Output: OrbStack installed, strict resource limits (CPU/RAM/Disk) configured to protect the Mac, and verified healthy via `docker info`.
-- [ ] T2 (2h): Create Immich Compose profile in repo.
+- [x] T2 (2h): Create Immich Compose profile in repo.
   Output: `infra/immich/docker-compose.yml` and `.env.example` with documented required variables.
 - [ ] T3 (1h): Validate service boot order.
   Output: Runbook section with startup command, expected healthy containers, and first successful boot screenshot/log excerpt.

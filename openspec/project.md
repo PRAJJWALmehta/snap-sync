@@ -42,7 +42,7 @@ Phase 1: Core Infrastructure (Foundation)
   Output: OrbStack installed, strict resource limits (CPU/RAM/Disk) configured to protect the Mac, and verified healthy via `docker info`.
 - [x] T2 (2h): Create Immich Compose profile in repo.
   Output: `infra/immich/docker-compose.yml` and `.env.example` with documented required variables.
-- [ ] T3 (1h): Validate service boot order.
+- [x] T3 (1h): Validate service boot order.
   Output: Runbook section with startup command, expected healthy containers, and first successful boot screenshot/log excerpt.
 - [ ] T4 (2h): External SSD asset mount and permissions.
   Output: deterministic mount path, ownership notes, and verified write test from container.
